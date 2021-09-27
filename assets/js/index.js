@@ -17,11 +17,13 @@ submit.addEventListener('click', (e) => {
             for (let i=0; i < input.length; i++) {
                 input[i].value = '';
             }
+            window.scrollTo(0,document.body.scrollHeight);
+            window.setTimeout( () => {location.reload()}, 2500);
 
-            window.setTimeout( ()=> {location.reload()}, 2500);
+            
         }
     }
-})
+});
 
 
 const formValidation = () => {
@@ -38,7 +40,7 @@ const formValidation = () => {
             let errorMsg = parent[i].querySelector('.error-msg');
             errorMsg.remove();
             parent[i].querySelector('.error-svg-inactive').classList.remove('error-svg-active');
-
+            parent[i].querySelector('.input-field').classList.remove('border-error');
         }
     }
 
@@ -50,6 +52,7 @@ const formValidation = () => {
         const parent = firstName.parentElement; 
         parent.appendChild(errorMsg);
         parent.querySelector('.error-svg-inactive').classList.add('error-svg-active');
+        parent.querySelector('.input-field').classList.add('border-error');
         formIsValid = false;
     } 
 
@@ -61,17 +64,19 @@ const formValidation = () => {
         const parent = lastName.parentElement; 
         parent.appendChild(errorMsg);
         parent.querySelector('.error-svg-inactive').classList.add('error-svg-active');
+        parent.querySelector('.input-field').classList.add('border-error');
         formIsValid = false;
     } 
 
     if (email.value == '') {
         const errorMsg = document.createElement('p');
         errorMsg.className = 'error-msg';
-        const text = document.createTextNode('Email cannot be empty');
+        const text = document.createTextNode('Email Address cannot be empty');
         errorMsg.appendChild(text); 
         const parent = email.parentElement; 
         parent.appendChild(errorMsg);
         parent.querySelector('.error-svg-inactive').classList.add('error-svg-active');
+        parent.querySelector('.input-field').classList.add('border-error');
         formIsValid = false;
     } 
 
@@ -86,6 +91,7 @@ const formValidation = () => {
             const parent = email.parentElement; 
             parent.appendChild(errorMsg);
             parent.querySelector('.error-svg-inactive').classList.add('error-svg-active');
+            parent.querySelector('.input-field').classList.add('border-error');
             formIsValid = false;
         }   
         
@@ -99,6 +105,7 @@ const formValidation = () => {
         const parent = password.parentElement; 
         parent.appendChild(errorMsg);
         parent.querySelector('.error-svg-inactive').classList.add('error-svg-active');
+        parent.querySelector('.input-field').classList.add('border-error');
         formIsValid = false;
     }
 
@@ -111,9 +118,66 @@ const formValidation = () => {
             const parent = password.parentElement; 
             parent.appendChild(errorMsg);
             parent.querySelector('.error-svg-inactive').classList.add('error-svg-active');
+            parent.querySelector('.input-field').classList.add('border-error');
             formIsValid = false;
         }
     }
 
     return formIsValid;
 }
+
+
+const input = document.querySelectorAll('.input-field');
+    input.forEach((element)=>{
+        element.onchange= (e)=> {
+            
+            if(element.parentElement.getElementsByClassName('error-msg')[0]){
+                let errorMessage = element.parentElement.querySelector('.error-msg');
+                errorMessage.remove();
+                element.parentElement.querySelector('.error-svg-inactive').classList.remove('error-svg-active');
+                element.parentElement.querySelector('.input-field').classList.remove('border-error');
+            }
+            
+            let inputName = element.getAttribute('placeholder');
+            if (e.target.value == '') {
+                const errorMsg = document.createElement('p');
+                errorMsg.className = 'error-msg';
+                const text = document.createTextNode(inputName + ' cannot be empty');
+                errorMsg.appendChild(text);  
+                const parent = element.parentElement;
+                parent.appendChild(errorMsg);
+                parent.querySelector('.error-svg-inactive').classList.add('error-svg-active');
+                parent.querySelector('.input-field').classList.add('border-error');
+            }else {
+                if(e.target.value != '') {
+                    
+                    if(element.getAttribute('placeholder') == 'Email Address') {
+                        let lastAtPos = e.target.value.lastIndexOf('@');
+                        let lastDotPos = e.target.value.lastIndexOf('.');
+                        if (!(lastAtPos < lastDotPos && lastAtPos > 0 && e.target.value.indexOf('@@') === -1 && lastDotPos > 2 && (e.target.value.length - lastDotPos) > 2)) {
+                            const errorMsg = document.createElement('p');
+                            errorMsg.className = 'error-msg';
+                            const text = document.createTextNode("Oops! Please check your email");
+                            errorMsg.appendChild(text); 
+                            const parent = element.parentElement;
+                            parent.appendChild(errorMsg);
+                            parent.querySelector('.error-svg-inactive').classList.add('error-svg-active');
+                            parent.querySelector('.input-field').classList.add('border-error');
+                        }
+                    }
+                    if(element.getAttribute('placeholder') == 'Password') {
+                        if (e.target.value.length < 5) {
+                            const errorMsg = document.createElement('p');
+                            errorMsg.className = 'error-msg';
+                            const text = document.createTextNode(inputName +' must contain at least 5 characters');
+                            errorMsg.appendChild(text); 
+                            const parent = element.parentElement;
+                            parent.appendChild(errorMsg);
+                            parent.querySelector('.error-svg-inactive').classList.add('error-svg-active');
+                            parent.querySelector('.input-field').classList.add('border-error');
+                        }
+                    }
+                }
+            }
+        };  
+    });

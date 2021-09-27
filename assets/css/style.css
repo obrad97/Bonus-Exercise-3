@@ -131,6 +131,10 @@ body {
     display: block;
 }
 
+.border-error {
+    border: 1px solid var(--pink)!important;
+}
+
 .done-msg {
     margin-bottom: 20px;
     font-style: normal;
@@ -159,7 +163,9 @@ body {
 }
 
 .registration input:focus {
-    outline: 1px solid var(--purple);
+    /*outline: 1px solid var(--purple);*/
+    box-shadow: 0 0 1px var(--purple);
+    
 }
 
 .submit-btn {
@@ -204,10 +210,15 @@ body {
 }
 
 @media only screen and (max-width:1200px) {
+    body{
+        height: auto;
+    }
+    
     .container {
         flex-direction: column;
         align-items: center;
         padding-top: 88px;
+        padding-bottom: 68px;
     }
 
     .introduction {
@@ -215,16 +226,79 @@ body {
         margin-bottom: 64px;
     }
 
-    .headline {
-        
-    /*font-size: 28px;
-    line-height: 36px;
-    letter-spacing: -0.291667px;
-    padding: 0 20px;*/
+    .content {
+        width: 80%;
     }
 
+    .registration {
+        width: 80%;
+    } 
+    
+    .trial-btn {
+        width: 80%;
+    } 
 
+}
 
+@media only screen and (max-width:1000px) {
+    .content {
+        width: 90%;
+    }
+
+    .registration {
+        width: 90%;
+    } 
+    
+    .trial-btn {
+        width: 90%;
+    } 
+}
+
+@media only screen and (max-width:850px) {
+    
+    .introduction {
+        width: 70%;
+    }
+    .content {
+        width: 100%;
+    }
+
+    .form-and-registration {
+        width: 70%;
+    }
+
+    .registration {
+        width: 100%;
+    } 
+
+    .trial-btn {
+        width: 100%;
+    } 
+}
+
+@media only screen and (max-width: 700px) {
+    
+    .introduction {
+        width: 90%;
+    }
+
+    .headline {
+        font-size: 28px;
+        line-height: 36px;
+    }
+
+    .form-and-registration {
+        width: 90%;
+    }
+
+    .trial-btn {
+        height: 88px;
+    }
+
+    .terms-and-services {
+        padding: 0 25px;
+    }
+    
 }
 
 
