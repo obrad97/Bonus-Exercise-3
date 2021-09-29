@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="./images/favicon-32x32.png"
+        />
+        <link rel="stylesheet" href="assets/css/style.css" />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"
+            rel="stylesheet"
+        />
+
+        <title>Frontend Mentor | Intro component with sign up form</title>
+    </head>
+    <body>
+        <div class="container">
+            <section class="introduction">
+                <div class="content">
+                    <h1 class="headline">Learn to code by watching others</h1>
+                    <p class="description">
+                        See how experienced developers solve problems in
+                        real-time. Watching scripted tutorials is great, but
+                        understanding how developers think is invaluable.
+                    </p>
+                </div>
+            </section>
+            <section class="form-and-registration">
+                <button type="button" class="trial-btn">
+                    <span>Try it free 7 days</span> then $20/mo. thereafter
+                </button>
+                <form class="registration">
+                    <div class="input-section">
+                        <input
+                            class="first-name input-field"
+                            type="text"
+                            placeholder="First Name"
+                        />
+                        <img
+                            class="error-svg-inactive"
+                            src="images/icon-error.svg"
+                        />
+                    </div>
+                    <div class="input-section">
+                        <input
+                            class="last-name input-field"
+                            type="text"
+                            placeholder="Last Name"
+                        />
+                        <img
+                            class="error-svg-inactive"
+                            src="images/icon-error.svg"
+                        />
+                    </div>
+                    <div class="input-section">
+                        <input
+                            class="email input-field"
+                            type="text"
+                            placeholder="Email Address"
+                        />
+                        <img
+                            class="error-svg-inactive"
+                            src="images/icon-error.svg"
+                        />
+                    </div>
+                    <div class="input-section">
+                        <input
+                            class="password input-field"
+                            type="password"
+                            placeholder="Password"
+                        />
+                        <img
+                            class="error-svg-inactive"
+                            src="images/icon-error.svg"
+                        />
+                    </div>
+                    <button id="btn" class="submit-btn" type="submit">
+                        CLAIM YOUR FREE TRIAL
+                    </button>
+                    <p class="terms-and-services">
+                        By clicking the button, you are agreeing to our
+                        <a href="#">Terms and Services</a>
+                    </p>
+                </form>
+            </section>
+        </div>
+        <script src="assets/js/index.js"></script>
+    </body>
+</html>
